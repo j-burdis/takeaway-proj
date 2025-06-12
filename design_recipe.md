@@ -61,35 +61,71 @@ class Menu:
 
     def __init__(self):
         # No parameters
-        # Creates a list of Meal instances
+        # Creates a dictionary of meals and prices
+        # names as keys, prices as values
         pass # No code here yet
 
     def view_menu(self):
         # no parameters
         # Returns:
-        #   list of meals on the menu
-        # no side-effects:
+        #   dictionary of meals on the menu
+        # no side-effects
         pass # No code here yet
 
+class Customer:
+    # user facing properties:
+    #   order history (orders): list of order instances
 
-class Meal:
-    # User-facing properties:
-    #   name: string
-    #   price: float
+    def __init__(self):
+        # side effects:
+        #   creates an empty list which will be 
+        #   populated by the customer's orders
+        pass
 
-    def __init__(self, name, price):
-        # Parameters:
-        #   name: string
-        #   price: float
-        # Side-effects:
-        #   Sets the title and artist properties
-        pass # No code here yet
+    def display_orders(self)
+        # returns:
+        #   the list of order instances for this customer
 
-    def format(self):
-        # Returns:
-        #   A string of the form "TITLE by ARTIST"
-        pass # No code here yet
+class Order:
+    def __init__(self):
+        #   menu as a parameter?
+        # side effects:
+        #   creates an empty dictionary 
+        #   where order items can be added
+        pass
 
+    def calculate_total(self):
+        # returns:
+        #   float: total cost of the items 
+        #           in the order dictionary
+        pass
+
+    def add_to_order(self, name, quantity)
+        # params:
+        #   name: string of item from the menu
+        #   quantity: integer
+        # side effects: appends item to the order dictionary 
+        #               so it has name, price and quantity
+        pass
+
+    def view_order(self)
+        # returns:
+        #   dictionary of items in the current 
+        #   order with names, prices and 
+        #   quantities as well as a grand total
+        pass
+
+    def complete_order(self):
+        # side effects:
+        #   appends order to order list of customer
+        #   clears the order of all items - necessary?
+        #   triggers order_confirmation() method
+        pass
+
+    def order_confirmation(self):
+        # returns:
+        #   confirmation message with delivery time
+        pass
 ```
 
 ## 3. Create Examples as Integration Tests
@@ -101,16 +137,41 @@ combinations that reflect the ways in which the system will be used._
 # EXAMPLE
 
 """
-Given a library
-When we add two tracks
-We see those tracks reflected in the tracks list
+Given an item is added to an order
+We can see this item added to the order dictionary
 """
-library = MusicLibrary()
-track_1 = Track("Carte Blanche", "Veracocha")
-track_2 = Track("Synaesthesia", "The Thrillseekers")
-library.add(track_1)
-library.add(track_2)
-library.tracks # => [track_1, track_2]
+order = Order()
+order.add_to_order("Pizza", 2)
+order.view_order # => {"Pizza": {"price": 9.99, "quantity": 2}
+
+"""
+Given an order contains menu items
+I can calculate the total order cost
+"""
+order = Order()
+order.add_to_order("Pizza", 2)
+order.calculate_total() # => 19.98
+
+"""
+Given an order is completed
+It is appended to the list of orders for that customer
+"""
+customer = Customer()
+order = Order()
+order.add_to_order("Pizza", 2)
+order.complete_order()
+customer.orders.append(order)
+customer.display_orders() # => [order]
+
+"""
+Given an order is completed
+I recieve a confirmation text with the delivery time
+"""
+customer = Customer()
+order = Order()
+order.add_to_order("Pizza", 2)
+order.complete_order() # receives text from twilio
+
 ```
 
 ## 4. Create Examples as Unit Tests
@@ -122,11 +183,20 @@ a more granular level of detail._
 # EXAMPLE
 
 """
-Given a track with a title and an artist
-We see the title reflected in the title property
+Given a menu
+I can return the list of names 
+and prices of all the items
 """
-track = Track("Carte Blanche", "Veracocha")
-track.title # => "Carte Blanche"
+menu = Menu()
+menu.view_menu() # => {dict of all items}
+
+"""
+Given a customer
+Initially an empty list of orders is returned
+"""
+customer = Customer()
+customer.display_orders() # => []
+
 ```
 
 _Encode each example as a test. You can add to the above list as you go._
