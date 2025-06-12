@@ -1,6 +1,6 @@
 class Menu:
     def __init__(self):
-        self.menu = {
+        self._all_items = {
             "Margherita": 7.99, 
             "Pepperoni": 9.99, 
             "Funghi": 8.99, 
@@ -8,4 +8,4 @@ class Menu:
         }
 
     def view_menu(self):
-        return self.menu
+        return self._all_items

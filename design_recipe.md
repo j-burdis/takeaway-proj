@@ -167,7 +167,7 @@ customer = Customer()
 order = Order()
 order.add_to_order("Pizza", 2)
 order.complete_order()
-customer.orders.append(order)
+# customer.orders.append(order)
 customer.display_orders() # => [order]
 
 """
