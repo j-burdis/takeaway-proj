@@ -142,7 +142,7 @@ We can see this item added to the order dictionary
 """
 order = Order()
 order.add_to_order("Pizza", 2)
-order.view_order # => {"Pizza": {"price": 9.99, "quantity": 2}
+order.view_order() # => {"Pizza": {"price": 9.99, "quantity": 2}
 
 """
 Given an order contains menu items
@@ -197,6 +197,13 @@ Initially an empty list of orders is returned
 customer = Customer()
 customer.display_orders() # => []
 
+"""
+Given an item is added to an order
+We can check that the add method works
+"""
+order = Order()
+order.add_to_order("Pizza", 2)
+order.order_items # => {"Pizza": {"price": 9.99, "quantity": 2}
 ```
 
 _Encode each example as a test. You can add to the above list as you go._
