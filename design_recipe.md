@@ -135,6 +135,13 @@ combinations that reflect the ways in which the system will be used._
 
 ```python
 # EXAMPLE
+"""
+Given an item is added to an order
+We can check that the add method works
+"""
+order = Order()
+order.add_to_order("Pizza", 2)
+order.order_items # => {"Pizza": {"price": 9.99, "quantity": 2}
 
 """
 Given an item is added to an order
@@ -198,12 +205,11 @@ customer = Customer()
 customer.display_orders() # => []
 
 """
-Given an item is added to an order
-We can check that the add method works
+Given an order is created
+Initially it returns an empty dictionary
 """
 order = Order()
-order.add_to_order("Pizza", 2)
-order.order_items # => {"Pizza": {"price": 9.99, "quantity": 2}
+order.order_items # => {}
 ```
 
 _Encode each example as a test. You can add to the above list as you go._

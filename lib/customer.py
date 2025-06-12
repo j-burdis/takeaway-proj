@@ -1,3 +1,6 @@
 class Customer:
     def __init__(self):
-        pass
+        self.order_history = []
+
+    def display_orders(self):
+        return self.order_history
