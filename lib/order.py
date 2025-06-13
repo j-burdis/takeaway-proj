@@ -21,3 +21,4 @@ class Order:
     def complete_order(self, customer):
         self._order_items["total"] = self.calculate_total()
         customer._order_history.append(self)
+        # customer.send_confirmation()
